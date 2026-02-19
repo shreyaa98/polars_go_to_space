@@ -1,4 +1,4 @@
-.. pandas_go_to_space documentation master file, created by
+.. polars_go_to_space documentation master file, created by
    sphinx-quickstart on Sat Jan 28 10:05:39 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -20,6 +20,7 @@
 .. figure:: planet.png
 
 This is a Python tutorial featuring the `pandas <https://pandas.pydata.org/>`__ library.
+This version has been adapted to create *Polars Go to Space*.
 It focuses on the technical basics of Data Science – working with tabular data.
 On the way, you will help the pandas explore space.
 
@@ -80,7 +81,9 @@ The spaceship logo was purchased from `thenounproject.com <https://thenounprojec
 License
 -------
 
-© 2023 Kristian Rother
+© 2023 Kristian Rother 
+Adapted © 2026 Shreyaasri Prakash
+
 
 Unless stated otherwise, the content of this tutorial may be used under the conditions of the **Creative Commons Attribution Share-Alike License 4.0 (CC-BY-SA 4.0)**. 
 See `creativecommons.org <https://creativecommons.org/licenses/by-sa/4.0/>`__ .
