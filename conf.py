@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'pandas_go_to_space'
-copyright = '2023, Kristian Rother'
-author = 'Kristian Rother'
+project = 'polars_go_to_space'
+copyright = '2026, Kristian Rother, Shreyaasri Prakash'
+author = 'Kristian Rother, Shreyaasri Prakash'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------
@@ -34,6 +34,7 @@ intersphinx_mapping = {
     "ipython": ("https://ipython.readthedocs.io/en/latest/", None),
     "jupyter-notebook": ("https://jupyter-notebook.readthedocs.io/en/stable/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
+    "polars": ("https://docs.pola.rs/", None),
     "pyviz": ("https://pyviz-tutorial.readthedocs.io/de/latest/", None),
     "python-basics": ("https://python-basics-tutorial.readthedocs.io/de/latest/", None),
 }
@@ -51,7 +52,7 @@ html_favicon = "_static/logo.svg"
 
 html_theme_options = {
     "sidebar_hide_name": True,
-    "source_repository": "https://github.com/krother/pandas_go_to_space/",
+    "source_repository": "https://github.com/shreyaa98/polars_go_to_space/",
     "source_branch": "main",
     "source_directory": "/",
 

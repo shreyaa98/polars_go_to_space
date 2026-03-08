@@ -5,16 +5,15 @@ A data analysis exercise featuring the pandas library and a space travel story.
 Original project:
 https://krother.github.io/pandas_go_to_space/
 
----
 
 ## Authors
 
-- Original Author: Dr. Kristian Rother (2023)
-- Adaptation: Shreyaasri Prakash (2026)
+- (c) 2023 Dr. Kristian Rother
+- (c) 2026 Shreyaasri Prakash 
 
----
 
-## Building the Documentation (Windows)
+
+## Documentation (Windows)
 
 Create a virtual environment:
 
