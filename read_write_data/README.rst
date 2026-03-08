@@ -206,9 +206,8 @@ Challenge
 .. dropdown:: Where do the planet names come from?
    :animate: fade-in
 
-   The planet names were scraped from `everybodywiki.com <https://en.everybodywiki.com/List_of_Star_Trek_planets_(A%E2%80%93B)>`__ with the following script:
+   The planet names (:download:`names.txt`)
+   were scraped from `everybodywiki.com <https://en.everybodywiki.com/List_of_Star_Trek_planets_(A%E2%80%93B)>`__ .
+   The galaxy coordinates were generated with the following script:
 
-   .. literalinclude:: planet_scraper.py
-
-
-
+   .. literalinclude:: create_galaxy.py
