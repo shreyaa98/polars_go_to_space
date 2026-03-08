@@ -81,8 +81,7 @@ The spaceship logo was purchased from `thenounproject.com <https://thenounprojec
 License
 -------
 
-© 2023 Kristian Rother 
-© 2026 Shreyaasri Prakash
+© 2026 Shreyaasri Prakash and Kristian Rother
 
 
 Unless stated otherwise, the content of this tutorial may be used under the conditions of the **Creative Commons Attribution Share-Alike License 4.0 (CC-BY-SA 4.0)**. 
