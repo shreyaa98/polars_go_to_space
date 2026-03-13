@@ -4,25 +4,26 @@
    contain the root `toctree` directive.
 
 .. figure::
-   title.svg
+   select_rows_and_columns/space_polars.jpeg
+   :alt: Space Polar
+   :align: center
 
 .. card::
    :shadow: lg
    
    Long long ago, in a galaxy far far away,
-   there lived pandas traveling space.
-   They were peaceful explorers and skilled data scientists.
-   The pandas would venture to the stars in their spaceships
+   there lived polar bears exploring space.
+   They were curious explorers and expert data scientists.
+   The bears would pilot their star cruisers
    to discover planets full of data,
-   to analyze and plot that data,
-   and find new tastes of bamboo no creature had tasted before.
+   analyze and plot that data,
+   and find new tastes of bamboo and berries no creature had tasted before.
 
 .. figure:: planet.png
 
-This is a Python tutorial featuring the `pandas <https://pandas.pydata.org/>`__ library.
-This version has been adapted to create *Polars Go to Space*.
+This is a Python tutorial featuring the `polars <https://pola.rs/>`__ library.
 It focuses on the technical basics of Data Science – working with tabular data.
-On the way, you will help the pandas explore space.
+On the way, you will help the polar bears explore space.
 
 
 Contents
