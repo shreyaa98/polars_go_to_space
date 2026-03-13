@@ -5,9 +5,9 @@ Read the file :download:`penguin_sector.csv` into Python:
 
 .. code:: python3
 
-   import pandas as pd
+   import polars as pl
 
-   df = pd.read_csv('penguin_sector.csv', index_col=0, sep=',', header=0)
+   df = pl.read_csv('penguin_sector.csv')
 
 
 Solve the following tasks:
