@@ -8,13 +8,12 @@ Select Rows and Columns
 
    **Find your Crew**
 
-   As a spaceship captain, you are nothing without your crew.
-   You have five capable officers that help you run things.
-   Unfortunately, you have no idea where they are.
-   You assemble the entire crew on the flight deck.
-   How did your officers look like again?
-   
-   You will need to load the crew roster :download:`crew.csv` to identify them.
+   As the captain of a high-speed exploration vessel, you rely on your officers to keep everything running smoothly. 
+   Your ship’s systems process massive streams of data at incredible speed, and your crew roster is no exception.
+   Somewhere in the ship’s data core lies the list of your five trusted officers, but the display panel only shows raw data files.
+   Who are the officers serving on your ship?
+
+   To recognize your officers again, you’ll need to load the crew roster :download:`crew.csv` using Polars and inspect the data.
 
 ----
 
@@ -56,36 +55,37 @@ The inner one is a list of column names:
 Select columns by position
 --------------------------
 
-The Python slicing notation can be applied to select by position.
-The first slice selects all rows, the second selects columns 2-5.
+The slice() method selects rows by position.
+slice(10, 10) returns 10 rows starting from row 10.
+The column slice df.columns[1:4] selects columns 2–4, which are then returned using select().
 
 .. code:: python
 
-   df.iloc[:, 1:4]
+   df.slice(10,10).select(df.columns[1:4])
 
 ----
 
 Select rows by position
 -----------------------
 
-You can use the first slice only to access rows:
+You can select rows by position using the slice() method.
+The first argument specifies the starting row, and the second argument specifies the number of rows to return.
 
 .. code:: python
 
-   df.iloc[10:20]
+   df.slice(10, 10)
 
 ----
 
-Select rows by index label
---------------------------
+Select rows by column value (Polars equivalent of index selection)
+-------------------------------------------------------------------
 
-This is very useful if your index contains something else than numbers,
-e.g.
+In Polars, DataFrames don't have indices like Pandas. Instead, filter rows based on column values directly.
+This is useful for selecting rows where a column matches a specific value, e.g.
 
 .. code:: python
 
-   earcolor = df.set_index('ears')  # new DF with different index
-   earcolor.loc['pink']
+   df.filter(pl.col('ears') == 'pink')
 
 ----
 
@@ -99,13 +99,13 @@ It is easier to understand if you know the inner expression results in a boolean
 
 .. code:: python
 
-   df[df['ears'] == 'pink']
+   df.filter(pl.col('ears') == 'pink'))
 
-   df[df['black_spots'] < 3]
+   df.filter(pl.col('black_spots') < 3)
 
-   df[df['black_spots'].between(3, 7)]
+   df.filter(pl.col('black_spots').is_between(3, 7))
 
-   df[(df['black_spots'] < 3) & (df['white_spots'] > 7)]
+   df.filter((pl.col('black_spots') < 3) & (pl.col('white_spots') > 7))
 
 Note that you have to use the **binary operators** `&`, `|` to combine multiple conditions.
 The **logical operators** `and`, `or` will not work.
@@ -121,7 +121,7 @@ Select random rows
 
 ----
 
-.. figure:: space_panda.jpeg
+.. figure:: space_polars.jpeg
 
 Challenge
 ---------

@@ -1,18 +1,21 @@
-import pandas as pd
+import polars as pl
 import numpy as np
 
 np.random.seed(42)
 N = 500
 EARS = ['black', 'white', 'pink', 'blue', 'green', 'red', 'neon', 'orange', 'chartreuse', 'indigo', 'peachpuff', 'piercing', None]
 
-index = pd.Series(np.arange(N), name='id')
+index = pl.Series("id", np.arange(N))
 
-df = pd.DataFrame(
+df = pl.DataFrame(
     {
-        'white_spots': np.random.randint(1, 20, size=N),
-        'black_spots': np.random.randint(1, 20, size=N),
-        'ears': np.random.choice(EARS, size=N)
-    },
-    index=index
+        "id": np.arange(N),
+        "white_spots": np.random.randint(1, 20, size=N),
+        "black_spots": np.random.randint(1, 20, size=N),
+        "ears": np.random.choice(EARS, size=N)
+    }
 )
-df.to_csv('crew.csv')
+
+df.write_csv("crew.csv")
+
+
