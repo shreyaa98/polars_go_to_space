@@ -21,8 +21,9 @@ Penguin Tribes
    .. code:: python3
      
       import seaborn as sns
+      import polars as pl
 
-      df = sns.load_dataset("penguins")
+      df = pl.from_pandas(sns.load_dataset("penguins"))
 
 Pivot Tables
 ------------
@@ -39,13 +40,13 @@ Let's examine one example:
 
 .. code:: python3
 
-   pd.pivot_table(
-      data=df,
-      index="island",
-      values="bill_length_mm",
-      aggfunc="mean"
+   df_pivot = df_pl.pivot(
+      values="bill_length_mm",       
+      index="island",               
+      columns="species",            
+      aggregate_function="mean"      
    )
-   
+      
 Here, each distinct value in ``index`` results in a separate row. The ``values`` parameter defines which column will be used for aggregation.
 
 
@@ -62,12 +63,11 @@ The code requires one more line:
 
 .. code:: python3
 
-   pd.pivot_table(
-      data=df,
+   df_pivot = df_pl.pivot(
+      values="bill_length_mm",
       index="island",
       columns="sex",
-      values="bill_length_mm",
-      aggfunc="count"
+      aggregate_function="count"
    )
 
 The ``column`` parameter lets each distinct gender result in a separate column.
@@ -85,7 +85,7 @@ There are just a few aggregation functions that cover most statistical functions
 - min
 - max
 
-You could use your own functions with ``pd.pivot_table`` but this is out of scope for this tutorial.
+You could use your own functions with ``pl.pivot`` but this is out of scope for this tutorial.
 
 Normalizing
 -----------
@@ -96,31 +96,41 @@ Assume we have the pivot:
 
 .. code:: python3
 
-   piv = pd.pivot_table(
-      data=df,
+   piv = df_pl.pivot(
+      values="bill_length_mm",
       index="island",
       columns="sex",
-      values="bill_length_mm",
-      aggfunc="count"
+      aggregate_function="count"
    )
 
 You can normalize over the rows, so that the relative frequencies sum up to 1.0 for each island:
 
 .. code:: python3
 
-   piv / piv.sum()
+   piv.with_columns(
+       pl.col("Male") / pl.sum_horizontal(pl.col("Male"), pl.col("Female")),
+       pl.col("Female") / pl.sum_horizontal(pl.col("Male"), pl.col("Female"))
+   )
 
 If you want to normalize for each gender instead, you need to transpose the table first:
 
 .. code:: python3
 
-   piv.T / piv.T.sum()
+   piv.with_columns(
+       pl.col("Male") / pl.col("Male").sum(),
+       pl.col("Female") / pl.col("Female").sum()
+   )
 
 Finally, to normalize the entire table, so that everything adds up to 1.0, you need to divide by the **grand total**:
 
 .. code:: python3
 
-   piv / piv.sum().sum()
+   total = piv.select(pl.sum_horizontal(pl.col("Male"), pl.col("Female"))).sum().item()
+
+   piv.with_columns(
+       pl.col("Male") / total,
+       pl.col("Female") / total
+   )
 
 
 Bar Plots
