@@ -169,6 +169,10 @@ To convert from inches to pixels, the starfleet uses the ancient metric `dpi` (d
 
 A number of image formats including png, jpg and svg are available.
 
+.. code:: python
+
+   plt.savefig("sector_map.png", dpi=300)
+
 ----
 
 Challenge

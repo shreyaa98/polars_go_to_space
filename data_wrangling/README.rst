@@ -44,7 +44,7 @@ Convert values to strings:
 
 .. code:: python
 
-   df = df.with_columns(pl.col("crate_no").cast(pl.Utf8).alias("crate_str"))
+   df = df.with_columns(crate_str=pl.col("crate_no").cast(pl.Utf8))
 
 You can easily combine multiple columns using standard operators:
 
@@ -63,18 +63,6 @@ The only prerequisite is that the length matches that of your DataFrame:
    deck = [d for _,d in zip(range(df.shape[0]), cycle("123"))]  # repeat 1,2,3,1,..
    df = df.with_columns(pl.lit(deck).alias("deck")) 
 
-Set the index column
---------------------
-
-In Polars, DataFrames do not have an index column like pandas. Instead, you can filter rows based on column values.
-
-.. code:: python
-
-   # to select rows where crate_id is '13A'
-   crates = df.filter(pl.col("crate_id") == "13A")
-
-Polars operations return new DataFrames, so no inplace parameter.
-
 Missing values
 --------------
 
@@ -83,7 +71,13 @@ values is:
 
 .. code:: python
 
-   df.null_count().to_pandas().plot.bar()
+   from matplotlib import pyplot as plt
+
+   nulls = df.null_count().transpose(include_header=True, header_name="column", column_names=["null_count"])
+   plt.bar(nulls["column"], nulls["null_count"])
+   plt.xticks(rotation=45, ha="right")
+   plt.tight_layout()
+   plt.show()
 
 Often, you might simply want to kick out all rows in which a None or NaN
 occurs:
@@ -127,7 +121,7 @@ back to a ``for`` loop over all the rows.
        print(i, row['type'])
 
 
-.. figure:: bamboo.jpg
+.. figure:: family.jpg
 
 Challenge
 ---------

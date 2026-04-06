@@ -121,7 +121,7 @@ Select random rows
 
 ----
 
-.. figure:: space_polars.jpeg
+.. figure:: space_panda.jpeg
 
 Challenge
 ---------
@@ -154,5 +154,7 @@ Challenge
    :animate: fade-in
 
    Below you find the code to generate the data in :download:`crew.csv`:
+
+   The generator uses ``np.random.seed(42)``, so it is deterministic and reproduces the same file content.
 
    .. literalinclude:: crew_generator.py
